@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futbol Arena - Ən Son Xəbərlər və Nəticələr</title>
+    <style>
+        /* --- ÜMUMİ DİZAYN (RESET VƏ ŞRİFTLƏR) --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* --- ÜST MENYU (HEADER) --- */
+        header {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e94560;
+        }
+        .logo span {
+            color: #fff;
+        }
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #e94560;
+        }
+
+        /* --- ƏSAS EKRAN (HERO SECTION) --- */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1518605368461-1ee7e16287da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            max-width: 600px;
+        }
+        .btn {
+            background-color: #e94560;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: #d23850;
+        }
+
+        /* --- CANLI NƏTİCƏLƏR (LIVE SCORES) --- */
+        .section-title {
+            text-align: center;
+            margin: 40px 0 20px;
+            font-size: 2rem;
+            color: #1a1a2e;
+        }
+        .matches-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+        .match-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+        }
+        .league-name {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .teams {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .score {
+            background: #e94560;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 1.5rem;
+        }
+        .time {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #e94560;
+            font-weight: bold;
+        }
+
+        /* --- XƏBƏRLƏR BÖLMƏSİ (NEWS) --- */
+        .news-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px 50px 50px;
+        }
+        .news-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .news-img {
+            width: 100%;
+            height: 200px;
+            background-color: #ccc;
+            object-fit: cover;
+        }
+        .news-content {
+            padding: 15px;
+        }
+        .news-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #1a1a2e;
+        }
+        .news-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .read-more {
+            color: #e94560;
+            font-weight: bold;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Futbol<span>Arena</span> ⚽</div>
+        <nav>
+            <ul>
+                <li><a href="#">Ana Səhifə</a></li>
+                <li><a href="#">Xəbərlər</a></li>
+                <li><a href="#">Canlı Hesablar</a></li>
+                <li><a href="#">Turnir Cədvəli</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Futbol Dünyasına Xoş Gəlmisiniz</h1>
+        <p>Ən son futbol xəbərləri, canlı nəticələr, transfer şayiələri və komandanız haqqında hər şey tək bir ünvanda.</p>
+        <a href="#" class="btn">Son Xəbərləri Oxu</a>
+    </section>
+
+    <h2 class="section-title">Canlı Nəticələr</h2>
+    <section class="matches-container">
+        
+        <div class="match-card">
+            <div class="league-name">Çempionlar Liqası</div>
+            <div class="teams">
+                <span>Real Madrid</span>
+                <span class="score">2 - 1</span>
+                <span>Man City</span>
+            </div>
+            <div class="time">82' dəqiqə</div>
+        </div>
+
+        <div class="match-card">
+            <div class="league-name">İngiltərə Premyer Liqası</div>
+            <div class="teams">
+                <span>Arsenal</span>
+                <span class="score">0 - 0</span>
+                <span>Chelsea</span>
+            </div>
+            <div class="time">Hissə arası</div>
+        </div>
+
+        <div class="match-card">
+            <div class="league-name">Azərbaycan Premyer Liqası</div>
+            <div class="teams">
+                <span>Qarabağ</span>
+                <span class="score">3 - 0</span>
+                <span>Neftçi</span>
+            </div>
+            <div class="time">Bitdi</div>
+        </div>
+
+    </section>
+
+    <h2 class="section-title">Son Xəbərlər</h2>
+    <section class="news-container">
+        
+        <div class="news-card">
+            <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Futbol xəbər" class="news-img">
+            <div class="news-content">
+                <h3 class="news-title">İlin transfer bombası partladı!</h3>
+                <p class="news-desc">Avropanın nəhəng klubu ulduz futbolçu ilə 5 illik müqavilə imzaladı. Detallar xəbərimizdə...</p>
+                <a href="#" class="read-more">Ətraflı oxu ➔</a>
+            </div>
+        </div>
+
+        <div class="news-card">
+            <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Stadion" class="news-img">
+            <div class="news-content">
+                <h3 class="news-title">Çempionlar Liqasında finalın yeri dəyişdi</h3>
+                <p class="news-desc">UEFA-nın son qərarına əsasən bu mövsümün final matçı fərqli stadionda keçiriləcək.</p>
+                <a href="#" class="read-more">Ətraflı oxu ➔</a>
+            </div>
+        </div>
+
+        <div class="news-card">
+            <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Oyunçu" class="news-img">
+            <div class="news-content">
+                <h3 class="news-title">Milli komandamızın heyəti açıqlandı</h3>
+                <p class="news-desc">Baş məşqçi qarşıdakı vacib oyunlar üçün seçdiyi 23 nəfərlik siyahını mətbuata təqdim etdi.</p>
+                <a href="#" class="read-more">Ətraflı oxu ➔</a>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Futbol Arena. Bütün hüquqlar qorunur.</p>
+        <p style="font-size: 0.8rem; margin-top: 5px; color: #aaa;">Sizin üçün Gemini tərəfindən sevgi ilə kodlandı.</p>
+    </footer>
+
+    <script>
+        // Canlı hesabları yalandan "yanıb-sönən" etmək üçün kiçik script
+        setInterval(() => {
+            const times = document.querySelectorAll('.time');
+            times.forEach(time => {
+                if(time.innerText.includes("'")) {
+                    time.style.opacity = (time.style.opacity == 0 ? 1 : 0);
+                }
+            });
+        }, 1000);
+    </script>
+</body>
+</html>
