@@ -259,6 +259,56 @@
         </div>
     </section>
 </main>
+    <div id="who-are-ya-game" style="background: #1e1e1e; color: white; padding: 20px; border-radius: 12px; font-family: sans-serif; max-width: 500px; margin: 20px auto; border: 1px solid #333;">
+    <h2 style="text-align: center; color: #d4af37; margin-top: 0;">Who Are Ya? 🕵️‍♂️</h2>
+    
+    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+        <input type="text" id="guessInput" placeholder="Futbolçu adı..." style="flex: 1; padding: 10px; border-radius: 5px; border: 1px solid #444; background: #2a2a2a; color: white; outline: none;">
+        <button onclick="submitGuess()" style="padding: 10px 15px; border-radius: 5px; border: none; background: #d4af37; color: black; font-weight: bold; cursor: pointer;">Yoxla</button>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; text-align: center; font-size: 12px; color: #888; font-weight: bold; margin-bottom: 10px;">
+        <div>Klub</div><div>Ölkə</div><div>Mövqe</div><div>Yaş</div>
+    </div>
+
+    <div id="resultsList"></div>
+
+    <script>
+        const secret = { name: "K. Mbappe", club: "Real Madrid", country: "Fransa", pos: "FW", age: 25 };
+        const db = [
+            { name: "K. Mbappe", club: "Real Madrid", country: "Fransa", pos: "FW", age: 25 },
+            { name: "L. Messi", club: "Inter Miami", country: "Argentina", pos: "FW", age: 36 },
+            { name: "C. Ronaldo", club: "Al Nassr", country: "Portuqaliya", pos: "FW", age: 39 },
+            { name: "Juninho", club: "Qarabağ", country: "Braziliya", pos: "FW", age: 27 },
+            { name: "M. Icardi", club: "Qalatasaray", country: "Argentina", pos: "FW", age: 31 }
+        ];
+
+        function submitGuess() {
+            const val = document.getElementById("guessInput").value.trim();
+            const player = db.find(p => p.name.toLowerCase() === val.toLowerCase());
+            if (!player) return alert("Oyunçu tapılmadı!");
+
+            const res = document.getElementById("resultsList");
+            const row = document.createElement("div");
+            row.style.marginBottom = "10px";
+            
+            const getCls = (p, s, key) => p[key] === s[key] ? "background:#22c55e" : "background:#ef4444";
+            const ageArrow = player.age < secret.age ? "↑" : (player.age > secret.age ? "↓" : "");
+
+            row.innerHTML = `
+                <div style="font-size:12px; color:#d4af37; font-weight:bold; margin-bottom:3px;">${player.name}</div>
+                <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:5px; text-align:center; font-weight:bold; font-size:13px;">
+                    <div style="padding:10px 2px; border-radius:4px; ${getCls(player, secret, 'club')}">${player.club}</div>
+                    <div style="padding:10px 2px; border-radius:4px; ${getCls(player, secret, 'country')}">${player.country}</div>
+                    <div style="padding:10px 2px; border-radius:4px; ${getCls(player, secret, 'pos')}">${player.pos}</div>
+                    <div style="padding:10px 2px; border-radius:4px; ${getCls(player, secret, 'age')}">${player.age}${ageArrow}</div>
+                </div>`;
+            res.prepend(row);
+            document.getElementById("guessInput").value = "";
+        }
+    </script>
+    </div>
+    
 
 <script>
     // Dinamik Yeniləmə Funksiyası
